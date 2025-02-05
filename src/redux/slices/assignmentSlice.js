@@ -3,10 +3,9 @@ import { Alert } from 'react-native';
 
 const assignmentSlice = createSlice({
   name: 'assignments',
-  initialState: [],  // Ensure initial state is an array
+  initialState: [],  
   reducers: {
     assignUserToTask: (state, action) => {
-      console.log('Reducer executed');  // ✅ Check if this logs in console
       const { userId, taskId } = action.payload;
       if (!state.some(assignment => assignment.userId === userId && assignment.taskId === taskId)) {
         state.push({ userId, taskId });

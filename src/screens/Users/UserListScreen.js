@@ -16,13 +16,12 @@ const UserListScreen = ({ navigation }) => {
     const fetchUsers = async () => {
       const savedUsers = await loadData('users');
       if (savedUsers) {
-        dispatch(setUsers(savedUsers)); // ✅ Replace entire user state
+        dispatch(setUsers(savedUsers)); 
       }
     };
     fetchUsers();
   }, []);
 
-  // ✅ Sync Redux users with AsyncStorage whenever users change
   useEffect(() => {
     if (users.length > 0) {
       saveData('users', users);
@@ -40,7 +39,7 @@ const UserListScreen = ({ navigation }) => {
       <View style={styles.content}>
         <FlatList
           data={users}
-          keyExtractor={(item) => item.id.toString()} // ✅ Fix keyExtractor issue
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <TouchableOpacity style={styles.listItem} onPress={() => navigation.navigate('AssignedTasksScreen', { userId: item.id })}>
               <Text>{item.name}</Text>
