@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000',
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   rightContainer: {

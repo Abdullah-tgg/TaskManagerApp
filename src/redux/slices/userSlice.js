@@ -1,22 +1,23 @@
-import {createSlice} from '@reduxjs/toolkit';
-
-const initialState = {
-  token: null,
-};
+import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
-  name: 'user',
-  initialState,
+  name: 'users',
+  initialState: [],
   reducers: {
-    setUser: (state, action) => {
-      state.token = action.payload;
+    addUser: (state, action) => {
+      state.push(action.payload);
+    },    updateUser: (state, action) => {
+      const index = state.findIndex(user => user.id === action.payload.id);
+      if (index !== -1) state[index] = action.payload;
     },
-    logoutUser: state => {
-      state.token = null;
+    deleteUser: (state, action) => {
+      const index = state.findIndex(user => user.id === action.payload);
+      if (index !== -1) {
+        state.splice(index, 1);
+      }
     },
-  },
+      },
 });
 
-export const {setUser, logoutUser} = userSlice.actions;
-
+export const { addUser, updateUser, deleteUser } = userSlice.actions;
 export default userSlice.reducer;
